@@ -20,7 +20,7 @@ let port_index=0
 while getopts "m:u:n:c:p:b:" options; do 
   case "${options}" in
     u)
-      echo "<${OPTARG}> a lv2:plugin ;"
+      echo "<${OPTARG}> a lv2:Plugin ;"
       ;;
     n)
       echo '  doap:name "'${OPTARG}'" ;'
@@ -45,7 +45,7 @@ while getopts "m:u:n:c:p:b:" options; do
         let port_index+=1
         echo "  ["
         echo "    a lv2:AudioPort ;"
-        echo "    a lv2:OuputPort ;"
+        echo "    a lv2:OutputPort ;"
         echo "    lv2:index ${port_index} ;"
         echo '    lv2:name "out'${n}'" ;'
         echo '    lv2:symbol "out'${n}'" ;'

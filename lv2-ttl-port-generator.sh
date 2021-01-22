@@ -1,5 +1,6 @@
 echo "  ["
 echo "    a lv2:ControlPort ;"
+echo "    a lv2:InputPort ;"
 
 # n name
 # s symbol
