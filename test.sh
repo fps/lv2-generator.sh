@@ -1,3 +1,5 @@
+# set -e
+
 ./lv2-ttl-generator.sh -m ttl -u http://fps.io/plugin -n "Simple Filter" -t simple-filter.ttl -b simple-filter.so -c 2 -p "-n foo -s foo" -p "-n bar -s bar" > test.ttl
 
 lv2_validate test.ttl
