@@ -9,6 +9,11 @@
 echo '@prefix lv2:  <http://lv2plug.in/ns/lv2core#> .'
 echo '@prefix foaf: <http://xmlns.com/foaf/0.1/> .'
 echo '@prefix doap: <http://usefulinc.com/ns/doap#> .'
+echo '@prefix units: <http://lv2plug.in/ns/extensions/units#> .'
+echo '@prefix foaf: <http://xmlns.com/foaf/0.1/> .'
+echo '@prefix pprops: <http://lv2plug.in/ns/ext/port-props> .'
+echo
+
 
 let port_index=0
 
@@ -49,8 +54,11 @@ while getopts "m:u:n:c:p:b:" options; do
        done
       ;;
     p) 
+      if ((port_index>0)); then
+        echo "  ,"
+      fi
       # echo ${OPTARG}
-      echo $port_index
+      bash ./lv2-ttl-port-generator.sh -m ${port_index} ${OPTARG}
       let port_index+=1
       ;;
     *)
