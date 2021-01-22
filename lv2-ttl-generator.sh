@@ -5,12 +5,13 @@
 # c number of audio channels
 # t name of seeAlso ttl
 # p control ports arguments get passed to lv2-port-generator.sh
+# s name of cpp struct
 
 
 
 let control_port_index=0
 
-while getopts "m:r:t:u:n:c:p:b:" options; do 
+while getopts "m:r:s:t:u:n:c:p:b:" options; do 
   case "${options}" in
     m)
       mode="${OPTARG}"
@@ -19,7 +20,7 @@ while getopts "m:r:t:u:n:c:p:b:" options; do
       uri="${OPTARG}"
       ;;
     n)
-      name="${OPTARG}"
+      pname="${OPTARG}"
       ;;
     t)
       seealso="${OPTARG}"
@@ -36,13 +37,16 @@ while getopts "m:r:t:u:n:c:p:b:" options; do
       # bash ./lv2-ttl-port-generator.sh -m ${port_index} ${OPTARG}
       let control_port_index+=1
       ;;
+    s)
+      struct="${OPTARG}"
+      ;;
     *)
       exit 1
   esac
 done
 
 if [ "$mode" = "cpp" ]; then
-  echo '#define PLUGIN_URI "'${OPTARG}'"'
+  echo '#define PLUGIN_URI "'${uri}'"'
 fi
 
 if [ "$mode" = "manifest" ]; then
@@ -67,7 +71,7 @@ if [ "$mode" = "ttl" ]; then
   echo '@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .'
   echo
   echo "<${uri}> a lv2:Plugin ;"
-  echo '  doap:name "'${name}'" ;'
+  echo '  doap:name "'${pname}'" ;'
   echo "  lv2:binary <${binary}> ;"
   echo "  lv2:port"
   for n in `seq 1 ${channels}`; do
@@ -94,6 +98,9 @@ if [ "$mode" = "ttl" ]; then
   done
   num_cp=${#control_ports[@]}
   for n in `seq 0 $((num_cp-1))`; do
+    if ((port_index>0)); then
+      echo "  ,"
+    fi
     bash ./lv2-ttl-port-generator.sh -m ${port_index} ${control_ports[$n]}
     let port_index+=1
   done 
