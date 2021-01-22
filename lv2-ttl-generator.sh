@@ -2,8 +2,10 @@
 
 # u uri
 # n name
+# b name of plugin binary
 # c number of audio channels
 # p control ports arguments get passed to lv2-port-generator.sh
+
 
 
 echo '@prefix lv2:  <http://lv2plug.in/ns/lv2core#> .'
@@ -17,7 +19,7 @@ echo
 
 let port_index=0
 
-while getopts "m:u:n:c:p:b:" options; do 
+while getopts "u:n:c:p:b:" options; do 
   case "${options}" in
     u)
       echo "<${OPTARG}> a lv2:Plugin ;"
