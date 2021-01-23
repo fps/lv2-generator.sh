@@ -101,7 +101,7 @@ if [ "$mode" = "ttl" ]; then
     if ((port_index>0)); then
       echo "  ,"
     fi
-    bash ./lv2-ttl-port-generator.sh -m ${port_index} ${control_ports[$n]}
+    bash -c "bash ./lv2-ttl-port-generator.sh -m ${port_index} ${control_ports[$n]}"
     let port_index+=1
   done 
   echo "  ."
