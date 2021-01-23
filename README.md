@@ -4,7 +4,7 @@
 
 results in:
 
-<pre>
+```
 @prefix lv2:  <http://lv2plug.in/ns/lv2core#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix doap: <http://usefulinc.com/ns/doap#> .
@@ -59,4 +59,4 @@ results in:
     lv2:maximum 1.0 ;
   ]
 .
-</pre>
+```
