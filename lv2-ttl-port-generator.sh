@@ -31,7 +31,7 @@ while getopts "n:s:i:d:x:m:lh" options; do
       echo "    lv2:maximum ${OPTARG} ;"
       ;;
     l)
-      echo "    lv2:PortProperty pprops:logarithmic ;"
+      echo "    lv2:portProperty pprops:logarithmic ;"
       ;;
     h)
       echo "    units:unit units:hz ;"

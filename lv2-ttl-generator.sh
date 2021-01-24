@@ -6,12 +6,13 @@
 # t name of seeAlso ttl
 # p control ports arguments get passed to lv2-port-generator.sh
 # s name of cpp struct
-
+# o project uri
 
 
 let control_port_index=0
+channels=0
 
-while getopts "m:r:s:t:u:n:c:p:b:" options; do 
+while getopts "m:r:s:t:u:n:c:p:b:o:" options; do 
   case "${options}" in
     m)
       mode="${OPTARG}"
@@ -40,6 +41,9 @@ while getopts "m:r:s:t:u:n:c:p:b:" options; do
     s)
       struct="${OPTARG}"
       ;;
+    o)
+      project_uri="${OPTARG}"
+      ;;
     *)
       exit 1
   esac
@@ -66,12 +70,12 @@ if [ "$mode" = "ttl" ]; then
   echo '@prefix foaf: <http://xmlns.com/foaf/0.1/> .'
   echo '@prefix doap: <http://usefulinc.com/ns/doap#> .'
   echo '@prefix units: <http://lv2plug.in/ns/extensions/units#> .'
-  echo '@prefix foaf: <http://xmlns.com/foaf/0.1/> .'
-  echo '@prefix pprops: <http://lv2plug.in/ns/ext/port-props> .'
+  echo '@prefix pprops: <http://lv2plug.in/ns/ext/port-props#> .'
   echo '@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .'
   echo
   echo "<${uri}> a lv2:Plugin ;"
   echo '  doap:name "'${pname}'" ;'
+#  echo "  lv2:project <${project_uri}> ;"
   echo "  lv2:binary <${binary}> ;"
   echo "  lv2:port"
   for n in `seq 1 ${channels}`; do
