@@ -1,5 +1,5 @@
 # set -e
-set -x 
+# set -x 
 
 echo Generating ttl
 
@@ -14,4 +14,7 @@ echo Generating manifest
 
 lv2_validate manifest.ttl test.ttl
 
+echo Generating cpp_defines
+
+./lv2-ttl-generator.sh -m cpp_defines -u http://fps.io/example -o http://fps.io -n "Example Plugin Test" -b example.so -c 2 -p "-n Gain -s gain -d 0.5 -i -0.001 -x 1.0 -l" -p '-n "Cutoff Frequency" -s cutoff -i 1.0 -x 20000.0 -d 2000.0 -hl' > defines.h
 

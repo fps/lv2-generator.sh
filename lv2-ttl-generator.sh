@@ -1,4 +1,4 @@
-# m mode (cpp, ttl, manifest, manifest-prefix)
+# m mode (cpp_defines, ttl, manifest, manifest-prefix)
 # u uri
 # n name
 # b name of plugin binary
@@ -50,9 +50,16 @@ while getopts "m:r:s:t:u:n:c:p:b:o:" options; do
   esac
 done
 
-if [ "$mode" = "cpp" ]; then
+if [ "$mode" = "cpp_defines" ]; then
+  let port_index=0
   echo '#define PLUGIN_URI "'${uri}'"'
-fi
+  for n in `seq 1 ${channels}`; do
+    echo "#define PLUGIN_PORT_in${n} ${port_index}"
+    let port_index+=1
+    echo "#define PLUGIN_PORT_out${n} ${port_index}"
+    let port_index+=1
+  done
+ fi
 
 if [ "$mode" = "manifest" ]; then
   echo "<${uri}> a lv2:Plugin ;"
