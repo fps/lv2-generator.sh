@@ -21,7 +21,7 @@ while getopts "m:r:s:t:u:n:c:p:b:o:" options; do
       uri="${OPTARG}"
       ;;
     n)
-      pname="${OPTARG}"
+      plugin_name="${OPTARG}"
       ;;
     t)
       seealso="${OPTARG}"
@@ -45,6 +45,7 @@ while getopts "m:r:s:t:u:n:c:p:b:o:" options; do
       project_uri="${OPTARG}"
       ;;
     *)
+      echo 'see cat `which lv2-ttl-generator.sh`'
       exit 1
   esac
 done
@@ -74,7 +75,7 @@ if [ "$mode" = "ttl" ]; then
   echo '@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .'
   echo
   echo "<${uri}> a lv2:Plugin ;"
-  echo '  doap:name "'${pname}'" ;'
+  echo '  doap:name "'${plugin_name}'" ;'
 #  echo "  lv2:project <${project_uri}> ;"
   echo "  lv2:binary <${binary}> ;"
   echo "  lv2:port"
